@@ -19,8 +19,6 @@ std::vector<int> generateJacobsthal(int N) {
     jacobsthal.push_back(J1);
 
     int nextJacobsthal = J1;
-    int n = 2;
-    
     while (nextJacobsthal <= N) {
         nextJacobsthal = J1 + 2 * J0;
         if (nextJacobsthal <= N) {
@@ -28,12 +26,9 @@ std::vector<int> generateJacobsthal(int N) {
         }
         J0 = J1;
         J1 = nextJacobsthal;
-        n++;
     }
     return ( jacobsthal );
 }
-
-
 
 int parser(char *argument, data_t &data)
 {
@@ -77,9 +72,6 @@ int parser(char *argument, data_t &data)
     }
 
     std::vector<int> jacobsthal = generateJacobsthal(data.pend.size());
-
-    
-
     // std::sort(data.main.begin(), data.main.end());
 
     // std::cout << "Jacobsthal Numbers" << std::endl;
@@ -105,10 +97,11 @@ int main(int ac, char **av)
     data_t data;
 
     if (ac != 2)
-        return (EXIT_FAILURE);
+        return (printErr(), EXIT_FAILURE);
     if (parser(av[1], data) == FAILURE)
         return (EXIT_FAILURE);
     
+    fordJohnson(data);
 
     return (0);
 }

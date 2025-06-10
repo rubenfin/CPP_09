@@ -129,5 +129,4 @@ void initializeInput(data_t &data)
         else
             errMsg("Error: couldn't find '|' separator");
     }
-    
 }

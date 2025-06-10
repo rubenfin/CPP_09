@@ -39,6 +39,8 @@ void openFileCheck(const char* filename, std::ifstream &file)
     file.open(filename, std::ios::in);
     if (!file.is_open())
         throw customException("Error: file couldn't be opened");
+    else if (file.peek() == EOF)
+        throw customException("Error: file is empty");
 }
 
 void trimSpaces(std::string &str)

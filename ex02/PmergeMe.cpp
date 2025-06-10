@@ -12,3 +12,7 @@
 
 #include "PmergeMe.hpp"
 
+void fordJohnson(const data_t &data)
+{
+    (void)data;
+}

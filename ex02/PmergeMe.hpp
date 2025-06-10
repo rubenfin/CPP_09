@@ -32,3 +32,16 @@ struct data_t
     int unevenNum;
     bool even;
 };
+
+template<typename T>
+class PmergeMe {
+private:
+    PmergeMe() = delete;
+    PmergeMe(const PmergeMe &rhs) = delete;
+    PmergeMe operator=(const PmergeMe &rhs) = delete;
+public:
+    
+};
+
+void fordJohnson(const data_t &data);
+void printErr();

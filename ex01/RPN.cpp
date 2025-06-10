@@ -63,7 +63,7 @@ int calculateOperations(RPN &data, const char& c)
         sum = numOne * numTwo;
     else if (c == '/')
     {
-        if (numOne == 0 || numTwo == 0)
+        if (numTwo == 0)
             return(err());
         sum = numOne / numTwo;
     }
@@ -81,15 +81,25 @@ int reversePolishNotation(RPN &data)
             savedNum += c;
         else if (c == ' ' && !savedNum.empty())
         {
-            data.stack.push(std::stoi(savedNum));
+            try 
+            {
+                data.stack.push(std::stoi(savedNum));
+            }
+            catch (const std::exception &e)
+            {
+                return (err());
+            }
             savedNum = "";
         }
         else if (isAnOperator(c))
         {
             if (!calculateOperations(data, c))
-                return (FAILURE);
+                return (err());
         }
     }
-    std::cout << "Final Answer: " << data.stack.top() << std::endl;
+    if (data.stack.size() == 1)
+        std::cout << "Final Answer: " << data.stack.top() << std::endl;
+    else
+        return(err());
     return (SUCCES);
 }
